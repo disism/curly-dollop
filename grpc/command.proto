@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package command;
+option go_package = ".;command";
+
+service Command {
+  rpc CommandExec (stream RunExec) returns (stream RunExecResponse) {}
+}
+
+message RunExec {
+  repeated string hostname = 1;
+  string cmd = 2;
+}
+message RunExecResponse {
+  string hostname = 1;
+  string resp = 2;
+}
